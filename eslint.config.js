@@ -16,6 +16,7 @@ export default antfu(
       'no-sequences': 'off',
       'node/prefer-global/process': 'off',
       // 'perfectionist/sort-objects': 'warn',
+      'ts/consistent-type-imports': 'off',
       'unused-imports/no-unused-vars': 'off',
       'vue/attributes-order': 'error',
       'vue/block-order': ['error', {

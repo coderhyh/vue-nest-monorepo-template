@@ -12,7 +12,7 @@ if (!resourceName) {
 }
 
 try {
-  execSync(`pnpm --filter @vue_nest_project/service exec nest generate resource ${resourceName} --no-spec`, { stdio: 'inherit' })
+  execSync(`pnpm --filter @vue_nest_project/service exec nest generate resource modules/${resourceName} --no-spec`, { stdio: 'inherit' })
 
   const __dirname = dirname(fileURLToPath(import.meta.url))
   console.log('\x1B[32m%s\x1B[0m', `ESLint`, 'start')
