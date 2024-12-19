@@ -13,8 +13,6 @@ dist-ssr
 *.local
 
 # Editor directories and files
-# .vscode/*
-# !.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
@@ -42,13 +40,6 @@ dist-ssr
 *.launch
 .settings/
 *.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 
 # Keys
 keys
