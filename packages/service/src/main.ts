@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import * as cors from 'cors'
 import { AppModule } from './app.module'
+import { ENV } from './config'
 import { HttpFilterInterceptor } from './interceptor/httpFilterInterceptor'
 import { ResponseInterceptor } from './interceptor/responseInterceptor'
 
@@ -22,6 +23,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalInterceptors(new ResponseInterceptor())
   app.useGlobalFilters(new HttpFilterInterceptor())
-  await app.listen(3001)
+  await app.listen(ENV.SERVICE_CONFIG.port)
 }
 bootstrap()

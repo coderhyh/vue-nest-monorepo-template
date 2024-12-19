@@ -15,7 +15,7 @@ export default antfu(
       'no-restricted-imports': 'off',
       'no-sequences': 'off',
       'node/prefer-global/process': 'off',
-      'perfectionist/sort-objects': 'warn',
+      // 'perfectionist/sort-objects': 'warn',
       'unused-imports/no-unused-vars': 'off',
       'vue/attributes-order': 'error',
       'vue/block-order': ['error', {

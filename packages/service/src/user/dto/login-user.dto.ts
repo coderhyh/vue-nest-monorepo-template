@@ -11,9 +11,4 @@ export class LoginUserDto implements ILoginUserParams {
   @IsNotEmpty()
   @ApiProperty({ description: '密码', example: '1234561' })
   password: string
-
-  @IsNotEmpty()
-  @IsByteLength(4, 4)
-  @ApiProperty({ description: '验证码', example: '1233' })
-  code: string
 }
