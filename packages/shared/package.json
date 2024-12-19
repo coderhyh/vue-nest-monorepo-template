@@ -1,0 +1,27 @@
+{
+  "name": "@vue_nest_project/shared",
+  "type": "module",
+  "version": "0.0.1",
+  "exports": {
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js",
+      "require": "./dist/types/index.cjs"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.js",
+      "require": "./dist/utils/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "start": "tsup --watch"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5"
+  }
+}

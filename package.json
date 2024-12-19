@@ -1,0 +1,43 @@
+{
+  "name": "vue_nest_project",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "vue+nest template",
+  "author": "coderhyh",
+  "license": "MIT",
+  "keywords": [],
+  "engines": {
+    "node": ">=16.17.1"
+  },
+  "scripts": {
+    "start": "pnpm st:shared & pnpm st:web & pnpm st:service",
+    "build": "pnpm b:shared & pnpm b:web & pnpm b:service",
+    "st:web": "pnpm --filter @vue_nest_project/web start",
+    "st:service": "pnpm --filter @vue_nest_project/service start",
+    "st:shared": "pnpm --filter @vue_nest_project/shared start",
+    "b:web": "pnpm --filter @vue_nest_project/web build",
+    "b:service": "pnpm --filter @vue_nest_project/service build",
+    "b:shared": "pnpm --filter @vue_nest_project/shared build",
+    "lint": "pnpm lint:script & pnpm lint:style",
+    "lint:script": "eslint ./packages --fix",
+    "lint:style": "pnpm --filter @vue_nest_project/web lint:style",
+    "init": "pnpm i && git init && npx simple-git-hooks",
+    "g": "node ./scripts/nestGenerate.js"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.11.2",
+    "@unocss/eslint-plugin": "^0.65.1",
+    "eslint": "^9.15.0",
+    "eslint-plugin-format": "^0.1.3",
+    "lint-staged": "^15.2.11",
+    "simple-git-hooks": "^2.11.1",
+    "unocss": "^0.65.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx}": "pnpm lint:script",
+    "*.{css,less,vue,html}": "pnpm lint:style"
+  }
+}
