@@ -57,18 +57,6 @@ pull_latest_code() {
     git pull origin master
 }
 
-# 安装依赖
-install_dependencies() {
-    log_info "安装依赖..."
-    pnpm install
-}
-
-# 构建项目
-build_project() {
-    log_info "构建项目..."
-    pnpm build
-}
-
 # Docker 部署
 docker_deploy() {
     log_info "开始 Docker 部署..."
@@ -86,13 +74,6 @@ docker_deploy() {
     docker-compose ps
 }
 
-# 清理
-cleanup() {
-    log_info "清理构建缓存..."
-    rm -rf packages/*/dist
-    docker system prune -f
-}
-
 # 主函数
 main() {
     local start_time=$(date '+%Y-%m-%d %H:%M:%S')
@@ -103,11 +84,8 @@ main() {
 
     # 执行部署步骤
     pull_latest_code
-    install_dependencies
     generate_jwt_keys
-    build_project
     docker_deploy
-    cleanup
 
     local end_time=$(date '+%Y-%m-%d %H:%M:%S')
     log_info "部署完成 - $end_time"
