@@ -1,7 +1,9 @@
 import { IUser } from '.'
 
-export interface IUserCreateParams extends Pick<IUser, 'username' | 'password'> {}
+namespace UserRequest {
+  export interface IUserCreate extends Pick<IUser, 'username' | 'password'> {}
 
-export interface IUserLoginParams extends Pick<IUser, 'username' | 'password'> {}
+  export interface IUserLogin extends Pick<IUser, 'username' | 'password'> {}
 
-export type IUserDeleteParams = IUser['id']
+  export type IUserDelete = IUser['id']
+}

@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
-import { IUserCreateRes, IUserDeleteRes, IUserFindAllRes, IUserLoginRes } from '@vue_nest_project/shared/types/user'
+import { UserResponse } from '@vue_nest_project/shared/types/user'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { CreateUserDto } from './dto/create-user.dto'
 import { LoginUserDto } from './dto/login-user.dto'
@@ -16,20 +16,20 @@ export class UserController {
   // @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: '创建用户' })
-  create(@Body() createUserDto: CreateUserDto): Promise<IUserCreateRes['data']> {
+  create(@Body() createUserDto: CreateUserDto): Promise<UserResponse.IUserCreate['data']> {
     return this.userService.create(createUserDto)
   }
 
   @Post('/login')
   @ApiOperation({ summary: '登录' })
-  login(@Body() loginUserDto: LoginUserDto): Promise<IUserLoginRes['data']> {
+  login(@Body() loginUserDto: LoginUserDto): Promise<UserResponse.IUserLogin['data']> {
     return this.userService.login(loginUserDto)
   }
 
   @Get()
   // @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  findAll(): Promise<IUserFindAllRes['data']> {
+  findAll(): Promise<UserResponse.IUserFindAll['data']> {
     return this.userService.findAll()
   }
 
@@ -50,7 +50,7 @@ export class UserController {
   @Delete(':id')
   // @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  remove(@Param('id') id: string): Promise<IUserDeleteRes['data']> {
+  remove(@Param('id') id: string): Promise<UserResponse.IUserDelete['data']> {
     return this.userService.remove(+id)
   }
 }
