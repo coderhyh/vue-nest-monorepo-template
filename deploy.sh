@@ -27,13 +27,14 @@ log_error() {
 
 # 检查必要的命令是否存在
 check_commands() {
-    local commands=("git" "pnpm" "docker" "docker-compose" "openssl")
-    for cmd in "${commands[@]}"; do
-        if ! command -v "$cmd" &> /dev/null; then
+    for cmd in git pnpm docker docker-compose openssl
+    do
+        if ! command -v "$cmd" &> /dev/null
+        then
             log_error "$cmd 未安装，请先安装必要的依赖"
             exit 1
         fi
-    }
+    done
 }
 
 # 生成 JWT 密钥
