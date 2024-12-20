@@ -9,20 +9,17 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-# 添加日志文件
-LOG_FILE="/var/log/deploy.log"
-
-# 修改日志函数
+# 打印带颜色的信息
 log_info() {
-    echo -e "${GREEN}[INFO] $1${NC}" | tee -a "$LOG_FILE"
+    echo -e "${GREEN}[INFO] $1${NC}"
 }
 
 log_warn() {
-    echo -e "${YELLOW}[WARN] $1${NC}" | tee -a "$LOG_FILE"
+    echo -e "${YELLOW}[WARN] $1${NC}"
 }
 
 log_error() {
-    echo -e "${RED}[ERROR] $1${NC}" | tee -a "$LOG_FILE"
+    echo -e "${RED}[ERROR] $1${NC}"
 }
 
 # 检查必要的命令是否存在
