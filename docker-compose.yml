@@ -43,7 +43,7 @@ services:
     container_name: vue_nest_frontend
     restart: always
     ports:
-      - "80:80"                        # 端口映射
+      - "8003:80"                        # 端口映射
     depends_on:
       - backend                        # 依赖后端服务
     networks:

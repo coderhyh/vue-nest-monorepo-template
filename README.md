@@ -45,6 +45,7 @@
 │   ├── frontend.Dockerfile # 前端 Docker 构建文件
 │   └── nginx.conf         # Nginx 配置文件
 ├── scripts/          # 项目脚本
+├── deploy.sh         # 部署脚本
 ├── package.json
 └── pnpm-workspace.yaml
 ```
@@ -117,6 +118,8 @@ pnpm g resource-name
 
 ### Docker 部署
 
+#### 手动部署
+
 ```bash
 # 1. 生成 JWT 密钥（如果还没有生成）
 cd packages/service/src
@@ -151,6 +154,16 @@ docker-compose down
 docker-compose down -v
 ```
 
+#### 自动部署
+
+```bash
+# 添加执行权限
+chmod +x deploy.sh
+
+# 运行部署脚本
+./deploy.sh
+```
+
 ### 目录说明
 
 ```bash
@@ -167,7 +180,7 @@ mysql_data/           # MySQL 数据持久化目录(自动创建)
 - 前端服务(frontend)
 
   - 基于 Nginx 部署
-  - 端口映射: 80
+  - 端口映射: 8003:80
   - 支持 SPA 路由
   - API 反向代理到后端服务
 
@@ -177,6 +190,7 @@ mysql_data/           # MySQL 数据持久化目录(自动创建)
   - 端口映射: 8802:3001
   - 生产环境运行
   - JWT 密钥通过 volume 挂载
+  - 使用淘宝 npm 镜像加速
 
 - MySQL 服务(mysql)
   - 版本: 8.0
