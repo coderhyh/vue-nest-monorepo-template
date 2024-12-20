@@ -2,6 +2,8 @@ FROM node:18.18.2 as builder
 
 WORKDIR /app
 
+RUN npm config set registry https://registry.npmmirror.com/
+
 RUN npm install -g pnpm
 
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
