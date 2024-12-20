@@ -200,7 +200,7 @@ mysql_data/           # MySQL 数据持久化目录(自动创建)
 
 ## VS Code 插件推荐
 
-- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) - Vue 3 支持
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
