@@ -37,10 +37,14 @@
 
 ```bash
 ├── packages
-│ ├── web/ # 前端项目
-│ ├── service/ # 后端项目
-│ └── shared/ # 共享模块
-├── scripts/ # 项目脚本
+│   ├── web/          # 前端项目
+│   ├── service/      # 后端服务
+│   └── shared/       # 共享模块
+├── docker/           # Docker 相关配置
+│   ├── backend.Dockerfile  # 后端 Docker 构建文件
+│   ├── frontend.Dockerfile # 前端 Docker 构建文件
+│   └── nginx.conf         # Nginx 配置文件
+├── scripts/          # 项目脚本
 ├── package.json
 └── pnpm-workspace.yaml
 ```
@@ -53,20 +57,21 @@
 - pnpm >= 8.0.0
 - MySQL >= 8.0
 - OpenSSL (用于生成 JWT 密钥)
+- Docker & Docker Compose (用于容器化部署)
 
 ### 安装
 
 ```bash
 # 安装依赖并初始化项目
 pnpm run init
+
 # 生成 JWT RSA 密钥对
 cd packages/service/src
 mkdir keys
 cd keys
-# 生成私钥
 openssl genrsa -out private.key 2048
-# 从私钥生成公钥
 openssl rsa -in private.key -pubout -out public.key
+cd ../../../..
 ```
 
 ### 开发
@@ -74,10 +79,11 @@ openssl rsa -in private.key -pubout -out public.key
 ```bash
 # 启动所有项目
 pnpm start
+
 # 分别启动
-pnpm st:web # 启动前端
-pnpm st:service # 启动后端
-pnpm st:shared # 启动共享模块
+pnpm st:web        # 启动前端
+pnpm st:service    # 启动后端
+pnpm st:shared     # 启动共享模块
 ```
 
 ### 构建
@@ -87,9 +93,9 @@ pnpm st:shared # 启动共享模块
 pnpm build
 
 # 分别构建
-pnpm b:web # 构建前端
-pnpm b:service # 构建后端
-pnpm b:shared # 构建共享模块
+pnpm b:web         # 构建前端
+pnpm b:service     # 构建后端
+pnpm b:shared      # 构建共享模块
 ```
 
 ### 代码规范
@@ -99,8 +105,8 @@ pnpm b:shared # 构建共享模块
 pnpm lint
 
 # 分别运行
-pnpm lint:script # ESLint 检查
-pnpm lint:style # Stylelint 检查
+pnpm lint:script   # ESLint 检查
+pnpm lint:style    # Stylelint 检查
 ```
 
 ### 生成 NestJS 资源
@@ -112,7 +118,7 @@ pnpm g resource-name
 ### Docker 部署
 
 ```bash
-# 生成 JWT 密钥（如果还没有生成）
+# 1. 生成 JWT 密钥（如果还没有生成）
 cd packages/service/src
 mkdir keys
 cd keys
@@ -120,22 +126,67 @@ openssl genrsa -out private.key 2048
 openssl rsa -in private.key -pubout -out public.key
 cd ../../../..
 
-# 启动所有服务
+# 2. 构建并启动所有服务
 docker-compose up -d
 
+# 服务访问地址:
+# - 前端: http://localhost
+# - 后端: http://localhost:8802
+# - MySQL: localhost:8801
+
+# 常用命令:
 # 查看服务状态
 docker-compose ps
 
 # 查看服务日志
-docker-compose logs -f
+docker-compose logs -f [service_name]
+
+# 重新构建并启动服务
+docker-compose up -d --build
 
 # 停止所有服务
 docker-compose down
+
+# 停止并删除所有数据(包括数据库数据)
+docker-compose down -v
 ```
+
+### 目录说明
+
+```bash
+docker/
+├── backend.Dockerfile  # 后端服务构建配置
+├── frontend.Dockerfile # 前端服务构建配置
+└── nginx.conf         # Nginx 配置文件
+
+mysql_data/           # MySQL 数据持久化目录(自动创建)
+```
+
+### 服务说明
+
+- 前端服务(frontend)
+
+  - 基于 Nginx 部署
+  - 端口映射: 80
+  - 支持 SPA 路由
+  - API 反向代理到后端服务
+
+- 后端服务(backend)
+
+  - 基于 Node.js 部署
+  - 端口映射: 8802:3001
+  - 生产环境运行
+  - JWT 密钥通过 volume 挂载
+
+- MySQL 服务(mysql)
+  - 版本: 8.0
+  - 端口映射: 8801:3306
+  - 数据持久化
+  - 原生密码认证
 
 ## VS Code 插件推荐
 
-- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) - Vue 3 支持
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 - [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
