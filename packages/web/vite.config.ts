@@ -93,7 +93,7 @@ export default defineConfig({
       '/api': {
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, ''),
-        target: 'https://echarts.apache.org/examples',
+        target: 'http://127.0.0.1:3001',
       },
     },
   },

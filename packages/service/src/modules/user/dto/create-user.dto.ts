@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { IUserCreateParams } from '@vue_nest_project/shared/types/user'
 import { IsByteLength, IsNotEmpty } from 'class-validator'
 
-export class CreateUserDto {
+export class CreateUserDto implements IUserCreateParams {
   @IsNotEmpty()
   @IsByteLength(8, 16)
   @ApiProperty({ description: '用户名', example: '772567615' })

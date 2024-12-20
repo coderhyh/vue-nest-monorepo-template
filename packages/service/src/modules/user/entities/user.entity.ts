@@ -1,7 +1,8 @@
+import { IUser } from '@vue_nest_project/shared/types/user'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity('users')
-export class User {
+export class User implements IUser {
   @PrimaryGeneratedColumn({
     comment: '用户id',
   })

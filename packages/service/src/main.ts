@@ -10,6 +10,8 @@ import { ResponseInterceptor } from './interceptor/responseInterceptor'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
+  app.setGlobalPrefix('api')
+
   const config = new DocumentBuilder()
     .setTitle('learn nest')
     .setDescription('接口文档')

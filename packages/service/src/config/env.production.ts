@@ -19,7 +19,7 @@ export default {
     database: 'coderhyh',
     password: '772567615h',
     autoLoadEntities: true,
-    synchronize: false,
+    synchronize: true,
   },
 
   // JWT配置
