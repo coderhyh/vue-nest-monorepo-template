@@ -1,5 +1,5 @@
-export * from './user.request'
-export * from './user.response'
+export * from './user.request.d'
+export * from './user.response.d'
 
 // user表字段
 export interface IUser {

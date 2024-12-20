@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "exports": {
-    "./types": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/types/index.js",
-      "require": "./dist/types/index.cjs"
+    "./types/*": {
+      "types": "./dist/types/*/index.d.ts",
+      "import": "./dist/types/*/index.js",
+      "require": "./dist/types/*/index.cjs"
     },
     "./utils": {
       "types": "./dist/utils/index.d.ts",

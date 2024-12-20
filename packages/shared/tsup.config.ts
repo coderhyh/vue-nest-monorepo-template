@@ -4,8 +4,8 @@ export default defineConfig({
   // clean: true,
   dts: true,
   entry: [
-    'types/index.ts',
-    'utils/index.ts',
+    'types/**/*.ts',
+    'utils/**/*.ts',
   ],
   format: ['cjs', 'esm'],
   outDir: 'dist',
