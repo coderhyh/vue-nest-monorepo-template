@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=16.17.1"
+    "node": ">=18.18.2"
   },
   "scripts": {
     "start": "vite",

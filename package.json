@@ -7,7 +7,7 @@
   "license": "MIT",
   "keywords": [],
   "engines": {
-    "node": ">=16.17.1"
+    "node": ">=18.18.2"
   },
   "scripts": {
     "start": "pnpm st:shared & pnpm st:web & pnpm st:service",

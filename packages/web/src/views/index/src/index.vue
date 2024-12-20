@@ -24,7 +24,6 @@ import type { ILoginUserParams } from '@vue_nest_project/shared/types'
 import { add } from '@vue_nest_project/shared/utils'
 
 const a: ILoginUserParams = {
-  code: '123',
   password: '123',
   username: '123',
 }

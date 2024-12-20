@@ -49,7 +49,7 @@
 
 ### 环境要求
 
-- Node.js >= 16.17.1
+- Node.js >= 18.18.2
 - pnpm >= 8.0.0
 - MySQL >= 8.0
 - OpenSSL (用于生成 JWT 密钥)
@@ -107,6 +107,30 @@ pnpm lint:style # Stylelint 检查
 
 ```bash
 pnpm g resource-name
+```
+
+### Docker 部署
+
+```bash
+# 生成 JWT 密钥（如果还没有生成）
+cd packages/service/src
+mkdir keys
+cd keys
+openssl genrsa -out private.key 2048
+openssl rsa -in private.key -pubout -out public.key
+cd ../../../..
+
+# 启动所有服务
+docker-compose up -d
+
+# 查看服务状态
+docker-compose ps
+
+# 查看服务日志
+docker-compose logs -f
+
+# 停止所有服务
+docker-compose down
 ```
 
 ## VS Code 插件推荐

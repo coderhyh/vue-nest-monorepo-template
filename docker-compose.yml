@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # MySQL 数据库服务
+  mysql:
+    image: mysql:8.0
+    container_name: vue_nest_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 772567615h  # root用户密码
+      MYSQL_DATABASE: coderhyh         # 初始数据库名
+    ports:
+      - "8801:3306"                    # 端口映射
+    volumes:
+      - ./mysql_data:/var/lib/mysql      # 数据持久化
+    networks:
+      - vue_nest_app_network
+    command: --default-authentication-plugin=mysql_native_password  # 使用原生密码认证
+
+  # 后端服务
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/backend.Dockerfile
+    container_name: vue_nest_backend
+    restart: always
+    ports:
+      - "8802:3001"                    # 端口映射
+    depends_on:
+      - mysql                          # 依赖MySQL服务
+    environment:
+      - NODE_ENV=production            # 环境变量
+    volumes:
+      - ./packages/service/src/keys:/app/packages/service/src/keys  # JWT密钥映射
+    networks:
+      - vue_nest_app_network
+
+  # 前端服务
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend.Dockerfile
+    container_name: vue_nest_frontend
+    restart: always
+    ports:
+      - "80:80"                        # 端口映射
+    depends_on:
+      - backend                        # 依赖后端服务
+    networks:
+      - vue_nest_app_network
+
+# 网络配置
+networks:
+  vue_nest_app_network:
+    name: vue_nest_app_network
+    driver: bridge
