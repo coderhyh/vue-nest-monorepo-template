@@ -10,8 +10,8 @@
     "node": ">=18.18.2"
   },
   "scripts": {
-    "start": "pnpm st:shared & pnpm st:web & pnpm st:service",
-    "build": "pnpm b:shared & pnpm b:web & pnpm b:service",
+    "start": "pnpm st:shared & pnpm st:service & pnpm st:web",
+    "build": "pnpm b:shared & pnpm b:service & pnpm b:web",
     "st:web": "pnpm --filter @vue_nest_project/web start",
     "st:service": "pnpm --filter @vue_nest_project/service start",
     "st:shared": "pnpm --filter @vue_nest_project/shared start",

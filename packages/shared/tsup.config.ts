@@ -7,7 +7,7 @@ export default defineConfig({
     'types/**/*.ts',
     'utils/**/*.ts',
   ],
-  format: ['cjs', 'esm'],
+  format: ['esm'],
   outDir: 'dist',
   sourcemap: true,
   splitting: false,

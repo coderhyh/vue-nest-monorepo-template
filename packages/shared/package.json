@@ -5,18 +5,13 @@
   "exports": {
     "./types/*": {
       "types": "./dist/types/*/index.d.ts",
-      "import": "./dist/types/*/index.js",
-      "require": "./dist/types/*/index.cjs"
+      "import": "./dist/types/*/index.js"
     },
     "./utils": {
       "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.cjs"
+      "import": "./dist/utils/index.js"
     }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup",
     "start": "tsup --watch"
